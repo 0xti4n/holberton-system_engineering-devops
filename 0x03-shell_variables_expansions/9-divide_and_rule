@@ -1,2 +1,2 @@
-[2;2Rn/bash
+#!/bin/bash
 echo $(($POWER / $DIVIDE))
