@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script is displaying "Holberton School" 10 times, but for the 9th iteration, displays Holberton School and then Hi on a new line.
+
+num=0
+while [ $num -ne 10 ]
+do
+    if [ $num == 9 ]; then
+        echo "Hi"
+    fi
+    echo "Holberton School"
+    num=$(( num + 1 ))
+done
