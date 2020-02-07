@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script is displaying "Holberton School" 10 times
+
+num=0
+con=10
+until [ $num -ge $con ]
+do
+    echo "Holberton School"
+    ((num++))
+done
