@@ -6,4 +6,4 @@ sudo apt-get install -y nginx
 
 echo "Holberton School for the win!" | sudo tee /var/www/html/index.html 
 
-sudo systemctl start nginx
+sudo systemctl restart nginx.service
