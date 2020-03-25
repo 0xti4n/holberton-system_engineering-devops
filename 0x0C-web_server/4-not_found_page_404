@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Bash script that configures a new Ubuntu machine.
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+echo "Holberton School for the win!" | sudo tee /var/www/html/index.html 
+
+sudo chmod -R 777 /etc/nginx
+sed -i "/server_name _;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+
+sudo touch /usr/share/nginx/html/custom_404.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+sed -i '35 a \ \t error_page 404 /custom_404.html; \n\t location = /custom_404.html { \n\t\t root /usr/share/nginx/html; \n\t\t internal; \n\t}' /etc/nginx/sites-available/default
+
+sudo service nginx restart
