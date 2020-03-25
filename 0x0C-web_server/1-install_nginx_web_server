@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine.
 
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get install -y nginx
 
-echo "Holberton School for the win!" > /var/www/html/index.nginx-debian.html                                                                    
+echo "Holberton School for the win!" | sudo tee /var/www/html/index.nginx-debian.html                                                                  
