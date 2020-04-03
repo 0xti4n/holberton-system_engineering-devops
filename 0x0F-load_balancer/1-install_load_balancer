@@ -2,13 +2,14 @@
 # Instal HAproxy and setup load balancer
 
 sudo apt-get install software-properties-common -y
-sudo add-apt-repository ppa:vbernat/haproxy-2.0 -y
+sudo add-apt-repository ppa:vbernat/haproxy-1.8 -y
 
 sudo apt-get update -y
-sudo apt-get install haproxy=2.0.\* -y
+sudo apt-get install haproxy -y
 
-sudo chmod 777 /etc/haproxy
+sudo chmod 777 /etc/haproxy/
 sudo chmod 777 /etc/haproxy/haproxy.cfg
-sudo sed -i "$ a frontend my_server \n\tbind *:80 \n\tmode http \n\tdefault_backend new \n\nbackend new \n\tbalance roundrobin \n\tmode http \n\tserver 1154-web-01 35.231.133.57:80 check \n\tserver 1154-web-02 54.91.43.217:80 check \n" /etc/haproxy/haproxy.cfg
+
+sudo sed -i "$ a frontend my_server \n\t bind *:80 \n\t mode http \n\t default_backend New \n\n backend New \n\t mode http \n\t balance roundrobin \n\t server 1154-web-01 104.196.21.123:80 check \n\t server 1154-web-02 54.226.145.255:80 check \n" /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
