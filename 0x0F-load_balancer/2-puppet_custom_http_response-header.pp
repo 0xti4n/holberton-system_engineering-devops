@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # header with puppet
 
 exec { 'header':
