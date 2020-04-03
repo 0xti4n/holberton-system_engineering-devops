@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Add htttp headers
+# shellcheck disable=SC2154
 
 sudo sed -i "11 a \ \t add_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
 
