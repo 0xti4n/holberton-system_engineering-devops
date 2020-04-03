@@ -4,11 +4,11 @@
 sudo apt-get install software-properties-common -y
 sudo add-apt-repository ppa:vbernat/haproxy-2.0 -y
 
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install haproxy=2.0.\* -y
 
 sudo chmod 777 /etc/haproxy
 sudo chmod 777 /etc/haproxy/haproxy.cfg
-sudo sed -i "$ a frontend my_server \n\tbind *:80 \n\tdefault_backend new \n\nbackend new \n\tbalance roundrobin \n\tserver server1 35.231.133.57:80 check \n\tserver server2 54.91.43.217:80 check" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a frontend my_server \n\tbind *:80 \n\tmode http \n\tdefault_backend new \n\nbackend new \n\tbalance roundrobin \n\tmode http \n\tserver 1154-web-01 35.231.133.57:80 check \n\tserver 1154-web-02 54.91.43.217:80 check \n" /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
