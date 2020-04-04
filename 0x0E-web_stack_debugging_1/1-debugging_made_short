@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# change port
-sudo sed -i "s/listen 8080 default_server/listen 80 default_server/" /etc/nginx/sites-enabled/default
-sudo sed -i "s/8080 default_server ipv6only=on/80 default_server ipv6only=on/" /etc/nginx/sites-enabled/default
+# change port sweet
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo pkill -o nginx
