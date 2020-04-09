@@ -34,13 +34,13 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 frontend my_server 
-         bind *:80 
-         mode http
-         acl letsencrypt-acl path_beg /.well-known/acme-challenge/ 
-         use_backend letsencrypt-backend if letsencrypt-acl  
-         bind *:443 ssl crt /etc/ssl/www.xti-an.tech/www.xti-an.tech.pem         
-         redirect scheme https code 301 if !{ ssl_fc }
-         default_backend New
+        bind *:80
+        bind *:443 ssl crt /etc/ssl/www.xti-an.tech/www.xti-an.tech.pem
+        redirect scheme https code 301 if !{ ssl_fc }
+        acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+        use_backend letsencrypt-backend if letsencrypt-acl
+        mode http
+        default_backend New
 
  backend New 
          mode http 
@@ -49,4 +49,4 @@ frontend my_server
          server 1154-web-02 54.226.145.255:80 check 
 
 backend letsencrypt-backend
-        server letsencrypt 127.0.0.1:8888
+        server encrypt 127.0.0.1:8888
