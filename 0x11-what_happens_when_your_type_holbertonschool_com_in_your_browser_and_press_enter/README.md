@@ -1,1 +1,1 @@
-# what_happens_when_your_type_holbertonschool_com_in_your_browser_and_press_enter
+# what happens when your type holbertonschool com in your browser and press enter
