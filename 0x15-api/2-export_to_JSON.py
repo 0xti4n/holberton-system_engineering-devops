@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""returns information about his/her todo list progress in cvs """
+"""returns information about his/her todo list progress in json"""
 from sys import argv
-import csv
+import json
 import requests
 
 if __name__ == "__main__":
@@ -19,7 +19,14 @@ if __name__ == "__main__":
     name = data_user['username']
     user_id = data_user['id']
 
-    with open(av + '.csv', 'w', newline='') as data:
-        writer = csv.writer(data, delimiter=',', quoting=csv.QUOTE_ALL)
-        for i in data_route2:
-            writer.writerow([user_id, name, i['completed'], i['title']])
+    new = {}
+    new[user_id] = []
+    for i in data_route2:
+        new[user_id].append({
+            'task': i['title'],
+            'completed': i['completed'],
+            'username': name
+            })
+    concat = av + '.json'
+    with open(concat, mode='w') as data:
+        json.dump(new, data)
