@@ -4,7 +4,7 @@ list containing the titles of all hot articles
 for a given subreddit. If no results are found for
 the given subreddit, the function should return None."""
 import requests
-import operator
+from collections import OrderedDict
 
 
 def count_words(subreddit, word_list, next_page='', new_ditc={}):
@@ -33,10 +33,12 @@ def count_words(subreddit, word_list, next_page='', new_ditc={}):
 
         next_page = titles['data']['after']
         if next_page is None:
-            sort_values = sorted(new_ditc.items(),
-                                 key=operator.itemgetter(1),
-                                 reverse=True)
-            for i in sort_values:
-                print('{}: {}'.format(i[0], i[1]))
+            order_dict = OrderedDict(sorted(new_ditc.items(),
+                                     key=lambda x: x[1],
+                                     reverse=True))
+            for k, v in order_dict.items():
+                if v != 0:
+                    print('{}: {}'.format(k, v))
+
         else:
             return count_words(subreddit, word_list, next_page, new_ditc)
