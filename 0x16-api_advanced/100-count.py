@@ -38,7 +38,8 @@ def count_words(subreddit, word_list, next_page='', new_ditc={}):
             order_dict = OrderedDict(sorted(new_ditc.items(),
                                      key=lambda x: x[1],
                                      reverse=True))
-            for k, v in order_dict.items():
+            cast_dict = dict(order_dict)
+            for k, v in cast_dict.items():
                 if v != 0:
                     print('{}: {}'.format(k, v))
 
