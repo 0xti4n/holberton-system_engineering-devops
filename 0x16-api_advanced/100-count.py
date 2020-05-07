@@ -16,6 +16,8 @@ def count_words(subreddit, word_list, next_page='', new_ditc={}):
     r = requests.get(queri, headers=header, allow_redirects=False)
     if r.status_code == 302:
         return
+    elif r.status_code == 404:
+        return
 
     else:
         if len(new_ditc) == 0:
