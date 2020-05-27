@@ -52,11 +52,11 @@ server {
         server_name _;
 rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
 
-        #location / {
+        location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
-                #try_files $uri $uri/ @proxy;
-        #}
+                try_files $uri $uri/ @proxy;
+        }
 
         location /airbnb-onepage/ {
                 proxy_pass http://127.0.0.1:5000;
@@ -77,7 +77,7 @@ rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
 
-        location / {
+        location @proxy {
                 proxy_pass http://127.0.0.1:5003;
                 proxy_set_header Host $host;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
